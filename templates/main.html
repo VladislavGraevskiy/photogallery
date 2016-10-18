@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/dopstyle.css" %}">
+    <title >Gallery </title>
+      <script>
+
+var setActionToForm = function (value) {
+var atr = value;
+var form = document.getElementById('button');
+form.setAttribute('action', atr)
+}
+
+</script>
+</head>
+<body>
+<div class="background">
+<nav class="navbar  navbar-default navbar-light bg-faded " style="background-color: #0f0f0f; ">
+    <div class="container ">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/" >#Photogallery </a>
+        </div>
+      {%if username  %}
+<ul class="nav navbar-nav navbar-collapse "><li><a  href="/addpicture/" >
+    Add picture
+    <span class="glyphicon glyphicon-plus"></span>
+</a>
+          </li></ul>
+    {% endif %}
+        <ul class="nav navbar-nav navbar-right">
+           {% if username %}
+              <li><a href="/profile/{{ username.id_users }}/">
+                   <span class="glyphicon glyphicon-user">
+                    {{ username }}</span>
+              </a>
+                   </li>
+               <li><a href="/login/out/" ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+
+               {% else %}
+               <li><a href="/login/" ><span class="glyphicon glyphicon-log-in"></span> Sign in</a></li>
+
+
+           {% endif %}
+        </ul>
+
+        </div>
+</nav>
+
+</div>
+
+    <div class="container " role="main">
+        {% block picture%}{% endblock %}
+        {% block login %}{% endblock %}
+        {% block user %} {% endblock %}
+        {% block admin %}{% endblock %}
+        {% block edit %}{% endblock %}
+    </div>
+
+
+
+</body>
+</html>

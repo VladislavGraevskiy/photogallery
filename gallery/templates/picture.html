@@ -1,0 +1,146 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+{% block picture %}
+
+
+    <div class="row" >
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12 ">
+                <p class="namep">{{ picture.name_of_picture }}</p>
+                <div class="ram">
+                    <img class="center-block img-responsive" src="data:image/jpg;base64,{{ text}}"/>
+                </div>
+                <div class="panel-footer panelcol">
+                    <span class="pull-left">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                        <span>{{ picture.date_of_add }}</span>
+                    </span>
+                     <span class="">
+                         <a href="/profile/{{ picture.id_user_id}}/">
+                             <img src=" {% static '1470893163_user-2.png'%}">
+                             {{ picture.id_user }}
+                         </a>
+                     </span>
+                    <span class="pull-right">
+                        <img alt='views' title="views" src="{% static '1473553954_eye.png' %}">
+                        {{ picture.views }}
+                    </span>
+                    <span class="pull-right">
+                        {% if username and checklike %}
+                            <a href="/removelike/{{ picture.id }}/{{ username.id_users }}/">
+                                <img src=" {% static '1470892885_88.png' %}">
+                            </a>
+                            {{ likes.count }}
+                        {% elif username %}
+
+
+                                <script>var xhr = new XMLHttpRequest();
+
+                            // 2. Конфигурируем его: GET-запрос на URL 'phones.json'
+                            xhr.open('GET', 'phones.json', false);
+
+                            // 3. Отсылаем запрос
+                            xhr.send();</script>
+                            <a href="/addlike/{{ picture.id }}/{{ username.id_users }}/">
+                                <img src=" {% static '1470892885_88_like.png' %}">
+                            </a>
+                            {{ likes.count }}
+                        {% else %}
+                            <p title="login or register to assess" >
+                                <img src=" {% static '1470892885_88_like.png' %}">
+                                {{ likes.count }}
+                            </p>{% endif %}
+                    </span>
+                    {% load emoticons_tags %}
+                </div>
+            </div>
+
+        <div class="col-md-2 col-sm-12 col-xs-12">
+        <div class="panel-footer text-nowrap">
+            {% if size %}
+                <p>
+                <script type="text/javascript">
+                function bytesToSize(bytes) {
+                    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+                    if (bytes == 0) return '0 Byte';
+                    var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+                    return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+                }
+                document.write(bytesToSize({{ bytes }}))
+            </script>
+                {{ size }}
+
+            </p>
+
+            {% else %}
+            <p>
+            <script type="text/javascript">
+                function bytesToSize(bytes) {
+                    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+                    if (bytes == 0) return '0 Byte';
+                    var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+                    return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+                }
+                document.write(bytesToSize({{ bytes }}))
+            </script>
+            {{ picture.picture_size }}
+
+            </p>
+            {% endif %}
+
+
+            </div>
+
+            <form action='/resize_picture/{{ picture.id }}/'method="post">
+                {% csrf_token %}
+                <h4 class="">Input picture width:</h4>
+                <label><input name="size" type="text"></label>
+<div class="btn-group">
+<button type="submit" class="btn btn-primary"  >
+              Get  picture
+            </button>
+                    <button class="btn  btn-info left center-block" >
+
+
+                        <span class="glyphicon glyphicon-download" ></span>
+                    </button>
+        </form>
+    {% if error %}
+        <p class="text-danger">{{ error }}</p>
+    {% endif %}
+        </div>
+        </div>
+            <div class="col-md-4 col-sm-12 col-xs-12">
+            <form method="post" action="/addcomment/{{ picture.id }}/{{ username.id_users }}/">
+            {% csrf_token %}
+
+                {% if username %}
+            {% emoticons %}
+                        <h3>Your comment:</h3>
+
+                        {{ form.comments}}
+
+                           <button type="submit" class="btn btn-success" >
+              Add comment
+            </button>
+                </form>
+
+                    {% endemoticons %}
+                {% endif %}
+                <h3 class="text-info "><img src=" {% static '1470893702_comment.png'%}">Comments:</h3>
+                {% for comment in comments%}
+
+                    <h4>
+                        {% emoticons %}
+                        {{ comment.comments }}
+                        </h4>
+                    {% endemoticons %}
+                    <p class="text-right " >{{ comment.date_of_comment }} <img src=" {% static '1470893747_user-2.png'%}"> {{ comment.id_user }}</p>
+                    <hr>
+                {% endfor %}
+
+            </div>
+        </div>
+
+{% endblock %}

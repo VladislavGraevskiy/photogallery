@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+{% block login %}
+
+<div class="col-sm-offset-4 col-sm-4">
+<form  action="/login/" method="post">
+{% csrf_token %}
+        <h2 class="form-signin-heading">Please sign in or
+            <a class="btn btn-success navbar-btn " href="/login/registration/" >Sign up</a>
+        </h2>
+        <label class="sr-only" for="email">Email address</label>
+        <input type="email" autofocus="" required="" placeholder="Email address" class="form-control" name="email" id="email">
+        <label class="sr-only" for="password">Password</label>
+        <input type="password" required="" placeholder="Password" class="form-control" name="password" id="password">
+        <button type="submit" class="btn btn-lg btn-primary btn-block">Sign in</button>
+        {% if login_error %}
+            <label class="text-danger">{{ login_error }}</label>
+        {% endif %}
+      </form>
+{% endblock %}
+</div>

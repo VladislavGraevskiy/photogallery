@@ -1,0 +1,67 @@
+
+.textstyle{
+    font-size: 25px;
+    color: #122b40;
+    font-variant: small-caps;
+}
+.textstyle_inf{
+    font-size: 18px;
+    color: #122b40;
+    font-variant: small-caps;
+
+}
+.colorofnav{
+
+
+
+}
+.namep{
+    font-size: 30px;
+    font-variant: small-caps;
+}
+.fix{
+     display: block;
+    width: 55px;
+    height: 25px;
+    padding: 0;
+    position: absolute;
+    right:1%;
+    top:100px;
+}
+.like{
+    display: inline-block; /* Строчно-блочный элемент */
+    position: relative; /* Относительное позиционирование */
+   }
+.like:hover::after {
+    content: attr(data-title); /* Выводим текст */
+    position: absolute; /* Абсолютное позиционирование */
+    left: 20%; top: 30%; /* Положение подсказки */
+    z-index: 1; /* Отображаем подсказку поверх других элементов */
+    background: rgba(255,255,230,0.9); /* Полупрозрачный цвет фона */
+    font-family: Arial, sans-serif; /* Гарнитура шрифта */
+    font-size: 11px; /* Размер текста подсказки */
+    padding: 5px 10px; /* Поля */
+    border: 1px solid #333; /* Параметры рамки */
+   }
+
+.panelcol{
+    background-color: #ebebeb;
+}
+
+
+.background {
+    background: url("les_derevya_svet_111536_1920x1080.ab48c6d213e4.jpg")no-repeat center center fixed;
+
+
+}
+.head{
+   background:coral;
+    height: 400px;
+    width:auto;
+}
+.head.text{
+    text-after-overflow: 20px;
+}
+.color{
+    background-color: inherit;
+}

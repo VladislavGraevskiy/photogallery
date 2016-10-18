@@ -1,0 +1,58 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block admin %}
+<form id="button"  method="post" >
+<div class="row">
+    <div class="col-md-8">
+
+{% csrf_token %}
+{% for mini in miniature%}
+
+    <div class="col-md-6">
+
+    <div class="ram">
+    <a href="/picture/{{ mini.id_pictures_id }}/" >
+        <img height="170px" class="center-block" src="data:image/jpeg;base64,{{ mini.pictures.tobytes }}"/>
+    </a>
+       {{ mini.name_of_picture }}
+            <p>Date of add: {{ mini.date_of_add }}</p>
+        <p>User:<a href="/profile/{{ mini.id_user_id}}/">{{ mini.id_user }}</a></p>
+        <div class="btn-group pull-right">
+        <button type="submit" class="btn btn-danger" value="/remove_picture/{{mini.id_pictures_id}}/" onClick="setActionToForm(value)">
+          Delete
+        </button>
+        <button type="submit" class="btn btn-success"  value="/approve_the_picture/{{mini.id}}/" onClick="setActionToForm(value)">
+          Add
+        </button>
+        <button type="submit" class="btn btn-info"  value="/profile/{{ user.id_users}}/" onClick="setActionToForm(value)">
+            <input type="hidden" name="fr" value="{{ mini.id_pictures_id }}">
+          Info
+        </button>
+        </div>
+
+    </div>
+    </div>
+{% endfor %}
+
+</div>
+
+    {% if user_info %}
+        {{ pic_info.pictures.tobytes.size}}
+        <div class="textstyle_inf"><p class="text-info">User information:</p>
+        <p >First name: {{ user_info.first_name }}</p>
+        <p>Last name: {{ user_info.last_name }}</p>
+        <p>Nickname:  {{ user_info.nikname }}</p>
+        <p>Date of registration: {{ user_info.data_of_reg }}</p>
+        <p>It is published picture: {{ count }}</p>
+        <div class="textstyle_inf"><p class="text-info">Picture information:</p>
+
+        </div>
+</div>
+    {% endif %}
+
+    </div>
+    </form>
+
+{% endblock admin %}
+
+

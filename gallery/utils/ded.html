@@ -1,0 +1,95 @@
+{% load staticfiles %}
+<html>
+<head>
+<title>Contacts</title>
+<meta charset="utf-8">
+
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/dopstyle.css" %}">
+    <title >Gallery </title>
+
+</head>
+<body>
+
+<form id="form" method="post">
+<nav class="navbar my-navi navbar-default navbar-fixed-top">
+<div class="container">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="#####">List of Contacts</a>
+</div>
+
+<div class="collapse navbar-collapse" id="myNavbar">
+<ul class="nav navbar-nav">
+<li><a href="#####"><span class="glyphicon glyphicon-log-in"></span> Home</a></li>
+</ul>
+
+<ul class="nav navbar-nav navbar-right">
+<li><a href="/web/search"><span class="glyphicon glyphicon-user"></span>Search</a></li>
+</ul>
+</div>
+
+</div>
+</nav>
+
+<div class="container">
+<table class="table table-striped my-marginer">
+<c:forEach var="error" items="${requestScope.errors}">
+<div><c:out value="${error}"/></div>
+</c:forEach>
+<thead>
+<tr>
+<th>ContactsID</th>
+<th>Full name</th>
+<th>Date of birth</th>
+<th>Address</th>
+<th>Company</th>
+</tr>
+</thead>
+
+<tbody>
+<c:forEach var="contact" items="${requestScope.contacts}">
+<tr>
+<td><input type="checkbox" name="id" value="${contact.id}" title="checkbox"> ${contact.id}</td>
+<td><a class="my-a-contacts" href="/web/contact/edit?contactid=${contact.id}">${contact.getFullName()}</a></td>
+<td>${contact.dateOfBirth}</td>
+<td>${contact.shortAddress}</td>
+<td>${contact.currentJob}</td>
+</tr>
+</c:forEach>
+</tbody>
+</table>
+<div class="btn-group pull-right">
+<a href="/web/contact/new" class="btn btn-primary" name="add" >Add</a>
+<button type="submit" class="btn btn-primary" value="/web/delete" onclick="setActionToForm()">Delete</button>
+<%--<a href="/web/contact/edit" class="btn btn-primary" name="edit">Edit</a>--%>
+<button type="submit" class="btn btn-primary" value="/web/contact/edit" onclick="setActionToForm()">Edit</button>
+<a href="/web/contact/email" class="btn btn-primary" name="email">Send email</a>
+</div>
+
+<ul class="my-pagi">
+<li><a href="#" class="btn btn-primary">&laquo;</a></li>
+<li><a href=" " class="btn btn-primary">1</a></li>
+<li><a href=" " class="btn btn-primary">2</a></li>
+<li><a href=" " class="btn btn-primary">3</a></li>
+<li><a href=" " class="btn btn-primary">4</a></li>
+<li><a href=" " class="btn btn-primary">5</a></li>
+<li><a href=" " class="btn btn-primary">&raquo;</a></li>
+</ul>
+</div>
+</form>
+</body>
+<script>
+
+var setActionToForm = function () {
+var atr = event.target.value;
+var form = document.getElementById('form');
+form.setAttribute('action', atr)
+}
+
+</script>
+</html>

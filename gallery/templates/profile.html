@@ -1,0 +1,66 @@
+{% extends 'main.html' %}
+{% block user %}
+    <form id="button" method="post">
+     {% csrf_token %}
+<div> <h1 >{{ user.first_name }} {{ user.last_name }}
+    {% if username == user%}
+    <small><a href="/edit_profile/{{ username.id_users }}/">edit</a></small>
+    {% endif %}
+</h1></div>
+    <div class="col-sm-9">
+        <p>Picture:</p>
+        {% for picture in pictures %}
+            {% if  pictures and username == user%}
+                 <div class="item col-sm-3 center-block" >
+
+
+
+                    <button class="btn btn-danger btn-xs pull-left" value="/remove_picture/{{ picture.id }}/" onClick="setActionToForm(value)">
+                        <span class="glyphicon glyphicon-minus "></span>
+
+                    </button>
+
+
+                     <a href="/picture/{{ picture.id_pictures_id }}/" >
+                         <div class="ram">
+                             <img height="110px"  src="data:image/png;base64,{{ picture.pictures.tobytes }}" />
+                         </div>
+                    </a>
+
+                     {% if not picture.check %}
+                         <p class="text-success text-center">
+                         picture checked by the administrator
+                         </p>
+                     {% endif %}
+
+                 </div>
+
+            {% elif  picture.check %}
+                <div class="item col-sm-3 center-block" >
+                    <a href="/picture/{{ picture.id_pictures_id}}/" >
+                        <div class="ram thumbnail">
+                            <img height="110px"  src="data:image/png;base64,{{ picture.pictures.tobytes }}" />
+                        </div>
+                    </a>
+                </div>
+            {% endif %}
+
+        {% endfor %}
+    </div>
+
+    <div class="col-sm-3">
+        {% if username == user %}
+            <h2>My comments:</h2>
+            {% for comment in comments %}
+                <form action="" method="post">
+                    <h4>{{ comment.comments }}</h4>
+                    <p>{{ comment.date_of_comment }} to
+                        <a href="/picture/{{comment.id_picture.id }}/"> {{ comment.id_picture }} </a>
+                        picture
+                    </p>
+                </form>
+            {% endfor %}
+        {% endif %}
+    </div>
+</form>
+{% endblock %}

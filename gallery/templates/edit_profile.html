@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block edit %}
+<form  class="form-horizontal" role="form" action="/edit_profile/{{user.id_users}}/"  method="post">
+{% csrf_token %}
+
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="FIRST_NAME">First name :</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="first_name"  name="first_name" value="{{ user.first_name }}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="last_name">Last_name:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="last_name" name="last_name" value="{{ user.last_name }}">
+    </div>
+  </div>
+    <div class="form-group">
+    <label class="control-label col-sm-2" for="nickname">Nickname:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="nickname" name="nikname" value="{{ user.nikname}}">
+    </div>
+  </div>
+      <div class="form-group">
+    <label class="control-label col-sm-2 " for="pass">Password:</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="pass" placeholder="Input new password">
+    </div>
+  </div>
+
+
+ <button type="submit"  class="btn btn-success">Save</button>
+    <a  href="/profile/{{ user.id_users }}/" ><button  class="btn btn-danger">Cancel</button></a>
+
+</form>
+
+{% endblock %}

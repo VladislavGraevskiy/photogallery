@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="PostgreSQL - photogallery@localhost" uuid="e4cc2b0c-c007-4ece-9700-d5b7bf02120e">
+    <database-info product="PostgreSQL" version="9.5.4" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
+      <identifier-quote-string>&quot;</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact"/>
+    <database-model serializer="dbm" rdbms="POSTGRES" format-version="2.5">
+      <database id="1" name="photogallery"/>
+      <schema id="2" parent="1" name="public">
+        <object-id>2200</object-id>
+        <comment>standard public schema</comment>
+        <introspection-state-number>667</introspection-state-number>
+        <introspection-timestamp>2016-10-18.12:52:50.501</introspection-timestamp>
+      </schema>
+      <sequence id="3" parent="2" name="django_migrations_id_seq">
+        <object-id>24576</object-id>
+        <state-number>667</state-number>
+      </sequence>
+      <table id="4" parent="2" name="django_migrations">
+        <object-id>24578</object-id>
+        <state-number>667</state-number>
+      </table>
+      <column id="5" parent="4" name="id">
+        <state-number>667</state-number>
+        <mandatory>1</mandatory>
+        <data-type>integer</data-type>
+        <default-expression>nextval(&apos;django_migrations_id_seq&apos;::regclass)</default-expression>
+      </column>
+      <column id="6" parent="4" name="app">
+        <state-number>667</state-number>
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="7" parent="4" name="name">
+        <state-number>667</state-number>
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="8" parent="4" name="applied">
+        <state-number>667</state-number>
+        <mandatory>1</mandatory>
+        <data-type>timestamp with time zone</data-type>
+      </column>
+      <index id="9" parent="4" name="django_migrations_pkey">
+        <object-id>24585</object-id>
+        <columns>id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="10" parent="4" name="django_migrations_pkey">
+        <columns>id</columns>
+        <underlying-index>django_migrations_pkey</underlying-index>
+        <primary>1</primary>
+      </key>
+    </database-model>
+  </data-source>
+</component>

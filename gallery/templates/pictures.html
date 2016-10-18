@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+{% block picture %}
+{% load staticfiles %}
+
+<div class="container">
+
+
+{% for picture in pictures%}
+    <div class="col-sm-6 col-md-4 ">
+        <div class=" backcolor">
+
+        <a href="/picture/{{ picture.id_pictures_id }}/" >
+            <div class="ram">
+                <img height="170px" class="center-block  " src="data:image/jpeg;base64,{{ picture.pictures.tobytes }}"/>
+            </div>
+        </a>
+
+       <div class=" text-center">
+        <span class="textstyle">{{ picture.name_of_picture }}</span>
+        <p>{{ picture.date_of_add }}
+               <img src=" {% static '1470893163_user-2.png'%}" >
+            <a href="/profile/{{ picture.id_user_id}}/">
+             {{ picture.id_user }}
+
+            </a>
+        </p>
+       </div>
+
+    <div class="row"></div>
+    </div>
+    </div>
+
+{% endfor %}
+</div>
+
+{% endblock %}
